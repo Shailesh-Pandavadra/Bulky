@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BulkyBookWeb.Controllers
 {
+    [AutoValidateAntiforgeryToken]
     public class CategoryController : Controller
     {
         private readonly ApplicationDbContext _db;
@@ -22,6 +23,15 @@ namespace BulkyBookWeb.Controllers
         public IActionResult Create()
         {
             return View();
+        }
+
+        // POST
+        [HttpPost]
+        public IActionResult Create(Category obj)
+        {
+            _db.Categories.Add(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
