@@ -101,7 +101,7 @@ namespace BulkyBookWeb.Controllers
         }
 
         // POST
-        [HttpPost]
+        [HttpPost,ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
             var obj = _db.Categories.Find(id);
